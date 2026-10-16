@@ -1,664 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>My Web Programming | Learning Hub</title>
-    <meta name="description"
-          content="Explore beginner-friendly web programming projects, practice coding, and learn step by step.">
-
-    <meta name="google-site-verification"
-          content="MC_AdgHZRmKs8Itp8JqyAknq17rnAnEFGsu6oefLXo0" />
-
-    <style>
-        :root {
-            --bg: #f5f7ff;
-            --surface: #ffffff;
-            --text: #17213a;
-            --muted: #68738a;
-            --primary: #5855e7;
-            --primary-dark: #403dc3;
-            --border: #e4e8f2;
-            --shadow: 0 12px 35px rgba(32, 42, 80, 0.08);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button, input {
-            font: inherit;
-        }
-
-        .container {
-            width: min(1120px, 92%);
-            margin: 0 auto;
-        }
-
-        /* Navigation */
-        .navbar {
-            background: rgba(255, 255, 255, 0.94);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            backdrop-filter: blur(12px);
-        }
-
-        .nav-inner {
-            min-height: 76px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 800;
-            font-size: 19px;
-        }
-
-        .brand-icon {
-            display: grid;
-            place-items: center;
-            width: 43px;
-            height: 43px;
-            border-radius: 14px;
-            color: white;
-            background: linear-gradient(135deg, #7773ff, #423dc8);
-            font-size: 22px;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 26px;
-            color: var(--muted);
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-button, .button {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            padding: 12px 19px;
-            border-radius: 12px;
-            background: var(--primary);
-            color: white;
-            font-weight: 700;
-            border: 0;
-            cursor: pointer;
-            transition: 0.2s ease;
-        }
-
-        .nav-button:hover, .button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        /* Hero */
-        .hero {
-            padding: 76px 0 58px;
-            background:
-                radial-gradient(circle at 85% 15%,
-                    rgba(154, 151, 255, .25), transparent 30%),
-                linear-gradient(135deg, #f6f7ff, #eef0ff);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.15fr .85fr;
-            align-items: center;
-            gap: 55px;
-        }
-
-        .eyebrow {
-            display: inline-block;
-            padding: 7px 12px;
-            color: var(--primary-dark);
-            background: #e7e6ff;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        h1 {
-            margin: 22px 0 18px;
-            max-width: 650px;
-            font-size: clamp(38px, 5vw, 60px);
-            line-height: 1.12;
-            letter-spacing: -2px;
-        }
-
-        .highlight {
-            color: var(--primary);
-        }
-
-        .hero-text {
-            max-width: 550px;
-            color: var(--muted);
-            font-size: 17px;
-            margin-bottom: 28px;
-        }
-
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 13px;
-        }
-
-        .button-secondary {
-            color: var(--text);
-            background: white;
-            border: 1px solid var(--border);
-        }
-
-        .button-secondary:hover {
-            background: #f0efff;
-            color: var(--primary-dark);
-        }
-
-        .hero-card {
-            padding: 28px;
-            color: white;
-            border-radius: 26px;
-            background: linear-gradient(145deg, #29275f, #5753dc);
-            box-shadow: 0 22px 50px rgba(64, 61, 195, .22);
-        }
-
-        .code-label {
-            color: #c8c7ff;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-
-        .code-title {
-            margin: 18px 0 12px;
-            font-size: 28px;
-            font-weight: 800;
-        }
-
-        .code-line {
-            margin-top: 9px;
-            padding: 12px 14px;
-            color: #e7e8ff;
-            background: rgba(255, 255, 255, .09);
-            border: 1px solid rgba(255, 255, 255, .1);
-            border-radius: 10px;
-            font-family: Consolas, monospace;
-            font-size: 13px;
-        }
-
-        .code-line span {
-            color: #a6f0d0;
-        }
-
-        .hero-note {
-            margin-top: 20px;
-            color: #e0e0ff;
-            font-size: 13px;
-        }
-
-        /* Programs */
-        .program-section {
-            padding: 65px 0 85px;
-        }
-
-        .section-heading {
-            display: flex;
-            align-items: end;
-            justify-content: space-between;
-            gap: 24px;
-            margin-bottom: 27px;
-        }
-
-        .section-heading h2 {
-            font-size: clamp(28px, 4vw, 38px);
-            letter-spacing: -1px;
-        }
-
-        .section-heading p {
-            margin-top: 6px;
-            color: var(--muted);
-        }
-
-        .program-count {
-            color: var(--primary-dark);
-            font-weight: 800;
-            white-space: nowrap;
-        }
-
-        .search-box {
-            width: 100%;
-            margin-bottom: 27px;
-            padding: 16px 18px;
-            color: var(--text);
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            outline: none;
-        }
-
-        .search-box:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(88, 85, 231, .12);
-        }
-
-        .program-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 21px;
-        }
-
-        .program-card {
-            padding: 23px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 19px;
-            box-shadow: 0 5px 18px rgba(32, 42, 80, .025);
-            transition: transform .2s ease, box-shadow .2s ease;
-        }
-
-        .program-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
-            border-color: #cfcdff;
-        }
-
-        .program-icon {
-            display: grid;
-            place-items: center;
-            width: 49px;
-            height: 49px;
-            margin-bottom: 19px;
-            border-radius: 15px;
-            background: #eeedff;
-            font-size: 23px;
-        }
-
-        .program-card h3 {
-            margin-bottom: 7px;
-            font-size: 19px;
-        }
-
-        .program-card p {
-            min-height: 44px;
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .card-bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            margin-top: 22px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border);
-        }
-
-        .level {
-            color: var(--muted);
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .open-link {
-            color: var(--primary);
-            font-size: 13px;
-            font-weight: 800;
-        }
-
-        .open-link:hover {
-            color: var(--primary-dark);
-        }
-
-        .empty-state {
-            padding: 35px;
-            text-align: center;
-            color: var(--muted);
-        }
-
-        /* About and footer */
-        .about {
-            padding: 42px 0;
-            background: white;
-            border-top: 1px solid var(--border);
-        }
-
-        .about-box {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 25px;
-        }
-
-        .about h2 {
-            margin-bottom: 7px;
-            font-size: 25px;
-        }
-
-        .about p {
-            max-width: 680px;
-            color: var(--muted);
-        }
-
-        footer {
-            padding: 24px 0;
-            background: #191b39;
-            color: #d4d6eb;
-            font-size: 13px;
-        }
-
-        .footer-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-        }
-
-        .footer-inner a {
-            color: white;
-        }
-
-        @media (max-width: 850px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-
-            .hero {
-                padding-top: 55px;
-            }
-
-            .program-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .nav-links {
-                gap: 14px;
-            }
-        }
-
-        @media (max-width: 560px) {
-            .nav-inner {
-                min-height: 68px;
-            }
-
-            .brand {
-                font-size: 15px;
-            }
-
-            .brand-icon {
-                width: 38px;
-                height: 38px;
-            }
-
-            .nav-links a:not(.nav-button) {
-                display: none;
-            }
-
-            .nav-button {
-                padding: 10px 12px;
-                font-size: 12px;
-            }
-
-            .hero {
-                padding: 42px 0;
-            }
-
-            h1 {
-                letter-spacing: -1px;
-            }
-
-            .hero-text {
-                font-size: 15px;
-            }
-
-            .hero-card {
-                padding: 22px;
-            }
-
-            .program-section {
-                padding: 47px 0 55px;
-            }
-
-            .section-heading {
-                align-items: start;
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .program-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .program-card p {
-                min-height: 0;
-            }
-
-            .about-box, .footer-inner {
-                align-items: start;
-                flex-direction: column;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
-            *, *::before, *::after {
-                transition: none !important;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Web Programming | Fkir Adam</title>
+  <meta name="description" content="Fkir Adam's Grade 11 web programming project: a collection of coding exercises and experiments." />
+  <meta name="google-site-verification" content="MC_AdgHZRmKs8Itp8JqyAknq17rnAnEFGsu6oefLXo0" />
+  <meta name="theme-color" content="#101d31">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18263a;
+      --muted: #67758a;
+      --paper: #f5f6f3;
+      --white: #ffffff;
+      --navy: #101d31;
+      --navy-2: #192b45;
+      --blue: #3568e8;
+      --teal: #19a995;
+      --coral: #f27c65;
+      --line: #e3e8e7;
+      --shadow: 0 12px 30px rgba(24, 38, 58, .08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button, a, input { -webkit-tap-highlight-color: transparent; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 3px solid #f2a45d;
+      outline-offset: 4px;
+    }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+
+    /* A simple, sturdy header rather than a generic template navbar. */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      color: #fff;
+      background: rgba(16, 29, 49, .97);
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      backdrop-filter: blur(12px);
+    }
+    .header-row { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      flex: 0 0 42px; width: 42px; height: 42px; display: grid; place-items: center;
+      color: #fff; background: var(--blue); border-radius: 12px; font-weight: 900; font-size: 17px;
+      box-shadow: 3px 3px 0 var(--teal);
+    }
+    .brand-copy { display: grid; line-height: 1.2; }
+    .brand-copy strong { font-size: 16px; letter-spacing: -.25px; }
+    .brand-copy small { margin-top: 4px; color: #b5c4d8; font-size: 11px; letter-spacing: .7px; }
+    .nav-links { display: flex; align-items: center; gap: 25px; color: #d4deec; font-size: 13px; font-weight: 700; }
+    .nav-links a:not(.nav-cta):hover { color: #8ee3d3; }
+    .nav-cta { padding: 10px 15px; color: #fff; background: var(--blue); border-radius: 10px; transition: background .2s ease, transform .2s ease; }
+    .nav-cta:hover { background: #2454ca; transform: translateY(-1px); }
+
+    .hero {
+      position: relative; overflow: hidden; color: #fff;
+      background: var(--navy);
+      isolation: isolate;
+    }
+    .hero::before, .hero::after { content: ""; position: absolute; z-index: -1; border-radius: 50%; pointer-events: none; }
+    .hero::before { width: 440px; height: 440px; top: -270px; left: 38%; border: 1px solid rgba(95, 141, 224, .25); box-shadow: 0 0 0 40px rgba(95,141,224,.035), 0 0 0 85px rgba(95,141,224,.025); }
+    .hero::after { width: 250px; height: 250px; right: -150px; bottom: -165px; background: rgba(25,169,149,.14); }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 52px; padding-block: 76px 78px; }
+    .kicker { display: inline-flex; align-items: center; gap: 9px; margin: 0; color: #a7eee1; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.6px; }
+    .kicker::before { content: ""; display: inline-block; width: 22px; height: 3px; background: var(--coral); border-radius: 5px; }
+    h1 { max-width: 590px; margin: 18px 0 17px; font-size: clamp(38px, 5.2vw, 62px); line-height: 1.07; letter-spacing: -2px; }
+    h1 .blue { color: #80a6ff; }
+    h1 .coral { color: #ffab91; }
+    .hero-copy { max-width: 515px; margin: 0; color: #c6d2e1; font-size: 16px; line-height: 1.8; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 45px; padding: 11px 17px; border: 1px solid transparent; border-radius: 11px; font-size: 13px; font-weight: 800; transition: transform .2s ease, background .2s ease, border-color .2s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { color: white; background: var(--blue); }
+    .button-primary:hover { background: #2755ce; }
+    .button-outline { color: #eaf0f8; border-color: #53647c; background: transparent; }
+    .button-outline:hover { background: rgba(255,255,255,.07); border-color: #91a6c0; }
+    .student-note { display: flex; align-items: center; gap: 9px; margin-top: 27px; color: #aabbd0; font-size: 12px; }
+    .student-note .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 4px rgba(25,169,149,.15); }
+
+    .desk-scene { position: relative; max-width: 470px; width: 100%; justify-self: end; padding: 20px; }
+    .tape { position: absolute; width: 84px; height: 22px; top: 7px; left: 44px; background: #f2b85e; opacity: .9; transform: rotate(-8deg); border-radius: 3px; z-index: 2; }
+    .code-window { overflow: hidden; border: 1px solid #42536c; border-radius: 15px; background: #17263c; box-shadow: 16px 20px 0 rgba(25,169,149,.18), 0 24px 55px rgba(0,0,0,.23); transform: rotate(1deg); }
+    .window-top { display: flex; align-items: center; gap: 6px; padding: 13px 15px; border-bottom: 1px solid #2d3e57; background: #1c2d45; }
+    .window-dot { width: 8px; height: 8px; border-radius: 50%; background: #f27c65; }
+    .window-dot:nth-child(2) { background: #f2b85e; }
+    .window-dot:nth-child(3) { background: #55c7a6; }
+    .window-label { margin-left: auto; color: #91a4be; font: 10px Consolas, monospace; }
+    .code-body { padding: 20px 19px 22px; font: 12px/2 Consolas, Monaco, monospace; color: #d7e2f2; }
+    .code-line { display: block; white-space: nowrap; }
+    .line-no { display: inline-block; width: 23px; color: #7589a4; user-select: none; }
+    .code-pink { color: #ffa4bb; }
+    .code-green { color: #8ce1c6; }
+    .code-yellow { color: #f6d18a; }
+    .code-blue { color: #8fb5ff; }
+    .desk-caption { position: absolute; right: -2px; bottom: 3px; padding: 11px 14px; color: var(--navy); background: #f6c96e; border-radius: 10px; font-size: 11px; font-weight: 900; transform: rotate(-4deg); box-shadow: 0 8px 20px rgba(0,0,0,.14); }
+
+    .programs { padding: 67px 0 75px; }
+    .section-top { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 25px; }
+    .section-tag { color: #168775; font-size: 11px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; }
+    h2 { margin: 7px 0 7px; font-size: clamp(28px, 3.5vw, 38px); line-height: 1.2; letter-spacing: -1.2px; }
+    .section-intro { max-width: 620px; margin: 0; color: var(--muted); font-size: 14px; }
+    .count-chip { flex: 0 0 auto; padding: 9px 12px; color: #284b91; border: 1px solid #dce5fa; border-radius: 999px; background: #edf2ff; font-size: 12px; font-weight: 800; }
+    .library-tools { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+    .search-wrap { position: relative; flex: 1; }
+    .search-icon { position: absolute; left: 16px; top: 50%; color: #8290a0; transform: translateY(-50%); font-size: 18px; pointer-events: none; }
+    .search-box { width: 100%; min-height: 48px; padding: 12px 16px 12px 44px; color: var(--ink); background: white; border: 1px solid #dce3e4; border-radius: 12px; outline: none; box-shadow: 0 4px 12px rgba(24,38,58,.025); }
+    .search-box::placeholder { color: #8b97a7; }
+    .search-box:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(53,104,232,.12); }
+    .search-hint { margin: 0; color: #8590a0; font-size: 11px; white-space: nowrap; }
+    .program-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .program-card { --card-accent: var(--blue); position: relative; display: flex; flex-direction: column; min-height: 205px; padding: 21px; background: #fff; border: 1px solid #e5e9e5; border-radius: var(--radius); box-shadow: 0 3px 10px rgba(24,38,58,.025); transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+    .program-card::before { content: ""; position: absolute; top: -1px; left: 20px; width: 34px; height: 3px; background: var(--card-accent); border-radius: 0 0 4px 4px; }
+    .program-card:hover { transform: translateY(-4px); border-color: #ced9e9; box-shadow: var(--shadow); }
+    .card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .program-number { display: grid; place-items: center; width: 42px; height: 42px; color: white; background: var(--card-accent); border-radius: 13px; font-size: 14px; font-weight: 900; letter-spacing: -.3px; }
+    .file-type { color: #7c8a9b; font: 10px Consolas, monospace; letter-spacing: .5px; }
+    .program-card h3 { margin: 17px 0 6px; font-size: 17px; letter-spacing: -.3px; }
+    .program-card p { flex: 1; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
+    .card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 18px; padding-top: 13px; border-top: 1px solid #edf0f0; }
+    .exercise-label { color: #168775; font-size: 10px; font-weight: 900; letter-spacing: .8px; text-transform: uppercase; }
+    .open-link { display: inline-flex; align-items: center; gap: 7px; color: var(--blue); font-size: 12px; font-weight: 900; }
+    .open-link span { display: grid; place-items: center; width: 25px; height: 25px; color: var(--blue); background: #edf2ff; border-radius: 50%; transition: transform .18s ease, background .18s ease; }
+    .open-link:hover span { transform: translateX(3px); background: #dbe5ff; }
+    .empty-state { margin: 0; padding: 32px 18px; text-align: center; color: var(--muted); background: white; border: 1px dashed #cbd5df; border-radius: 14px; }
+    .results-line { min-height: 22px; margin: 0 0 12px; color: #7b8797; font-size: 11px; }
+
+    .about-section { padding: 0 0 68px; }
+    .about-panel { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 20px; padding: 25px 28px; background: #e8f1ef; border: 1px solid #dceae6; border-radius: 18px; }
+    .about-mark { display: grid; place-items: center; width: 54px; height: 54px; color: #fff; background: var(--teal); border-radius: 16px; font-size: 23px; font-weight: 900; transform: rotate(-3deg); }
+    .about-panel h2 { margin: 0 0 6px; font-size: 22px; letter-spacing: -.5px; }
+    .about-panel p { max-width: 680px; margin: 0; color: #506c6a; font-size: 12px; line-height: 1.8; }
+    .about-stamp { align-self: stretch; display: grid; place-items: center; padding-left: 20px; border-left: 1px solid #c9ddda; color: #197e74; font-size: 12px; font-weight: 900; text-align: center; transform: rotate(-2deg); }
+
+    .site-footer { padding: 21px 0; color: #c8d2df; background: var(--navy); font-size: 11px; }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .footer-brand { display: inline-flex; align-items: center; gap: 8px; color: #fff; font-weight: 800; }
+    .footer-square { display: grid; place-items: center; width: 26px; height: 26px; color: white; background: var(--blue); border-radius: 8px; font-size: 11px; }
+    .footer-note { color: #9caec4; }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr .85fr; gap: 22px; }
+      .desk-scene { padding: 15px; }
+      .program-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .nav-links { gap: 15px; }
+    }
+    @media (max-width: 680px) {
+      .wrap { width: min(100% - 30px, 540px); }
+      .header-row { min-height: 65px; gap: 12px; }
+      .brand-mark { flex-basis: 37px; width: 37px; height: 37px; }
+      .brand-copy strong { font-size: 13px; }
+      .brand-copy small { font-size: 9px; }
+      .nav-links { gap: 0; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-cta { padding: 9px 11px; font-size: 11px; }
+      .hero-grid { grid-template-columns: 1fr; padding-block: 54px 52px; gap: 30px; }
+      h1 { max-width: 520px; font-size: clamp(39px, 11vw, 55px); letter-spacing: -1.5px; }
+      .hero-copy { font-size: 14px; }
+      .desk-scene { justify-self: center; max-width: 430px; margin-bottom: 5px; }
+      .code-body { padding: 15px; font-size: 10px; }
+      .programs { padding: 48px 0 54px; }
+      .section-top { align-items: start; flex-direction: column; gap: 12px; }
+      .library-tools { align-items: stretch; flex-direction: column; gap: 7px; }
+      .search-hint { white-space: normal; }
+      .program-grid { gap: 11px; }
+      .program-card { min-height: 196px; padding: 16px; border-radius: 15px; }
+      .program-card h3 { margin-top: 13px; font-size: 15px; }
+      .program-card p { font-size: 11px; }
+      .file-type { font-size: 9px; }
+      .about-panel { grid-template-columns: auto 1fr; gap: 14px; padding: 20px; }
+      .about-mark { width: 43px; height: 43px; font-size: 19px; }
+      .about-panel h2 { font-size: 19px; }
+      .about-stamp { grid-column: 1 / -1; padding: 12px 0 0; border-left: 0; border-top: 1px solid #c9ddda; }
+      .footer-row { align-items: flex-start; flex-direction: column; gap: 8px; }
+    }
+    @media (max-width: 390px) {
+      .program-grid { grid-template-columns: 1fr; }
+      .program-card { min-height: 0; }
+      .program-card p { font-size: 12px; }
+      .hero-actions .button { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
 </head>
-
 <body>
-    <header class="navbar">
-        <div class="container nav-inner">
-            <a class="brand" href="#home" aria-label="My Web Programming home">
-                <span class="brand-icon">&lt;/&gt;</span>
-                <span>My Web Programming</span>
-            </a>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="#home" aria-label="My Web Programming home">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span class="brand-copy">
+          <strong>My Web Programming</strong>
+          <small>LEARN &nbsp;·&nbsp; PRACTICE &nbsp;·&nbsp; BUILD</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#programs">Programs</a>
+        <a href="#about">About</a>
+        <a class="nav-cta" href="#programs">Browse exercises ↗</a>
+      </nav>
+    </div>
+  </header>
 
-            <nav class="nav-links" aria-label="Main navigation">
-                <a href="#home">Home</a>
-                <a href="#programs">Programs</a>
-                <a href="#about">About</a>
-                <a class="nav-button" href="#programs">Start Learning</a>
-            </nav>
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div class="hero-content">
+          <p class="kicker">A student project by Fkir Adam</p>
+          <h1>Small steps.<br><span class="blue">Real practice.</span><br><span class="coral">Better code.</span></h1>
+          <p class="hero-copy">Hi, welcome to my web programming page. This is where I keep the exercises I’m working on while learning how websites are made. Pick a program, open it, and have a look.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#programs">Explore the programs <span aria-hidden="true">→</span></a>
+            <a class="button button-outline" href="#about">About this project</a>
+          </div>
+          <div class="student-note"><span class="dot" aria-hidden="true"></span> Grade 11 learning project · Made to practise</div>
         </div>
-    </header>
 
-    <main>
-        <section class="hero" id="home">
-            <div class="container hero-grid">
-                <div>
-                    <span class="eyebrow">Student Learning Project</span>
-
-                    <h1>
-                        Learn to Code.<br>
-                        <span class="highlight">Build Your Future.</span>
-                    </h1>
-
-                    <p class="hero-text">
-                        Welcome to my web programming project. Explore
-                        practical exercises, open the programs, and build
-                        your coding skills one step at a time.
-                    </p>
-
-                    <div class="hero-actions">
-                        <a class="button" href="#programs">Explore Programs &rarr;</a>
-                        <a class="button button-secondary" href="#about">About This Project</a>
-                    </div>
-                </div>
-
-                <div class="hero-card">
-                    <div class="code-label">YOUR LEARNING SPACE</div>
-                    <div class="code-title">Think. Code. Create.</div>
-
-                    <div class="code-line">
-                        <span>&lt;html&gt;</span> Your journey starts here
-                    </div>
-                    <div class="code-line">
-                        <span>&lt;learn&gt;</span> Practice every day
-                    </div>
-                    <div class="code-line">
-                        <span>&lt;build&gt;</span> Turn ideas into projects
-                    </div>
-
-                    <p class="hero-note">
-                        A simple beginning can lead to great things.
-                    </p>
-                </div>
+        <div class="desk-scene" aria-label="Decorative code editor illustration">
+          <span class="tape" aria-hidden="true"></span>
+          <div class="code-window">
+            <div class="window-top" aria-hidden="true">
+              <span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span>
+              <span class="window-label">my-project / index.html</span>
             </div>
-        </section>
-
-        <section class="program-section" id="programs">
-            <div class="container">
-                <div class="section-heading">
-                    <div>
-                        <span class="eyebrow">Practice Library</span>
-                        <h2>Explore My Programs</h2>
-                        <p>Choose a program below to open and practise.</p>
-                    </div>
-
-                    <div class="program-count">14 Programs</div>
-                </div>
-
-                <label for="programSearch">Search programs</label>
-                <input
-                    class="search-box"
-                    type="search"
-                    id="programSearch"
-                    placeholder="Search by program number..."
-                    autocomplete="off"
-                >
-
-                <div class="program-grid" id="programGrid">
-                    <!-- Program cards are added below by JavaScript. -->
-                </div>
-
-                <p class="empty-state" id="emptyState" hidden>
-                    No programs found. Try another search.
-                </p>
+            <div class="code-body" aria-hidden="true">
+              <span class="code-line"><span class="line-no">01</span><span class="code-pink">&lt;main&gt;</span></span>
+              <span class="code-line"><span class="line-no">02</span>&nbsp;&nbsp;<span class="code-blue">&lt;h1&gt;</span>My first projects<span class="code-blue">&lt;/h1&gt;</span></span>
+              <span class="code-line"><span class="line-no">03</span>&nbsp;&nbsp;<span class="code-green">&lt;p&gt;</span>Keep learning<span class="code-green">&lt;/p&gt;</span></span>
+              <span class="code-line"><span class="line-no">04</span>&nbsp;&nbsp;<span class="code-yellow">&lt;a href=</span><span class="code-green">"program1.html"</span><span class="code-yellow">&gt;</span></span>
+              <span class="code-line"><span class="line-no">05</span>&nbsp;&nbsp;&nbsp;&nbsp;Open exercise</span>
+              <span class="code-line"><span class="line-no">06</span>&nbsp;&nbsp;<span class="code-yellow">&lt;/a&gt;</span></span>
+              <span class="code-line"><span class="line-no">07</span><span class="code-pink">&lt;/main&gt;</span><span class="code-green"> _</span></span>
             </div>
-        </section>
-
-        <section class="about" id="about">
-            <div class="container about-box">
-                <div>
-                    <h2>About This Project</h2>
-                    <p>
-                        This is an educational web programming project created
-                        to practise coding and organise learning exercises in
-                        one place. New programs and features can be added as
-                        the project grows.
-                    </p>
-                </div>
-
-                <a class="button" href="#programs">View All Programs &uarr;</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container footer-inner">
-            <span>&copy; <span id="year"></span> My Web Programming</span>
-            <span>Built for learning, practice, and creativity.</span>
+          </div>
+          <div class="desk-caption">one thing at a time ✦</div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        const programGrid = document.getElementById("programGrid");
-        const searchInput = document.getElementById("programSearch");
-        const emptyState = document.getElementById("emptyState");
+    <section class="programs" id="programs">
+      <div class="wrap">
+        <div class="section-top">
+          <div>
+            <span class="section-tag">The practice folder</span>
+            <h2>My programs</h2>
+            <p class="section-intro">Choose an exercise to open. I’ll keep adding to this collection as the project grows.</p>
+          </div>
+          <span class="count-chip" id="programCount">14 exercises</span>
+        </div>
 
-        const icons = ["💻", "🌐", "⚙️", "🧩", "🚀", "📘", "🎯"];
+        <div class="library-tools">
+          <div class="search-wrap">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <label class="sr-only" for="programSearch" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Search programs</label>
+            <input class="search-box" type="search" id="programSearch" placeholder="Search by program number (e.g. Program 4)…" autocomplete="off" aria-describedby="searchHint">
+          </div>
+          <p class="search-hint" id="searchHint">Tip: type a number to find an exercise quickly.</p>
+        </div>
+        <p class="results-line" id="resultsLine" aria-live="polite">Showing all 14 exercises</p>
+        <div class="program-grid" id="programGrid"></div>
+        <p class="empty-state" id="emptyState" hidden>No matching exercise. Try a different number.</p>
+      </div>
+    </section>
 
-        // Each card links to an existing program file in this repository.
-        for (let number = 1; number <= 14; number++) {
-            const card = document.createElement("article");
-            card.className = "program-card";
-            card.dataset.search = `program ${number}`;
+    <section class="about-section" id="about">
+      <div class="wrap">
+        <div class="about-panel">
+          <div class="about-mark" aria-hidden="true">✎</div>
+          <div>
+            <h2>A little about this page</h2>
+            <p>This is my Grade 11 web programming project—a place to organise my coding exercises and learn by trying things out. The program pages are the main part; this homepage just helps me find them.</p>
+          </div>
+          <div class="about-stamp">LEARN<br>BY DOING<br>↗</div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-            card.innerHTML = `
-                <div class="program-icon" aria-hidden="true">
-                    ${icons[(number - 1) % icons.length]}
-                </div>
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <span class="footer-brand"><span class="footer-square">&lt;/&gt;</span> My Web Programming · Fkir Adam</span>
+      <span>Grade 11 project · <span id="year"></span></span>
+      <span class="footer-note">Built one exercise at a time.</span>
+    </div>
+  </footer>
 
-                <h3>Program ${number}</h3>
+  <script>
+    (() => {
+      "use strict";
+      const programGrid = document.getElementById("programGrid");
+      const searchInput = document.getElementById("programSearch");
+      const emptyState = document.getElementById("emptyState");
+      const resultsLine = document.getElementById("resultsLine");
+      const programCount = document.getElementById("programCount");
+      const accents = ["#3568e8", "#19a995", "#f27c65", "#875bd8", "#e3a222", "#287b9c", "#d95c86"];
+      const fragment = document.createDocumentFragment();
 
-                <p>
-                    Open this exercise and explore the code in
-                    your learning project.
-                </p>
+      // Keep the repository's existing filenames; real topics can be added after those files are reviewed.
+      for (let number = 1; number <= 14; number += 1) {
+        const card = document.createElement("article");
+        const formattedNumber = String(number).padStart(2, "0");
+        card.className = "program-card";
+        card.dataset.search = `program ${number} ${formattedNumber} exercise ${number}`;
+        card.style.setProperty("--card-accent", accents[(number - 1) % accents.length]);
 
-                <div class="card-bottom">
-                    <span class="level">BEGINNER PROJECT</span>
-                    <a class="open-link"
-                       href="program${number}.html"
-                       aria-label="Open Program ${number}">
-                        Open Program &rarr;
-                    </a>
-                </div>
-            `;
+        const head = document.createElement("div");
+        head.className = "card-head";
+        const numberBadge = document.createElement("span");
+        numberBadge.className = "program-number";
+        numberBadge.textContent = formattedNumber;
+        const fileType = document.createElement("span");
+        fileType.className = "file-type";
+        fileType.textContent = `HTML / ${formattedNumber}`;
+        head.append(numberBadge, fileType);
 
-            programGrid.appendChild(card);
-        }
+        const title = document.createElement("h3");
+        title.textContent = `Program ${number}`;
+        const description = document.createElement("p");
+        description.textContent = "Open this exercise to see the code and what it does.";
 
-        searchInput.addEventListener("input", function () {
-            const query = searchInput.value.trim().toLowerCase();
-            const cards = programGrid.querySelectorAll(".program-card");
-            let visibleCount = 0;
+        const bottom = document.createElement("div");
+        bottom.className = "card-bottom";
+        const label = document.createElement("span");
+        label.className = "exercise-label";
+        label.textContent = "Practice exercise";
+        const link = document.createElement("a");
+        link.className = "open-link";
+        link.href = `program${number}.html`;
+        link.setAttribute("aria-label", `Open Program ${number}`);
+        link.append(document.createTextNode("Open file "));
+        const arrow = document.createElement("span");
+        arrow.setAttribute("aria-hidden", "true");
+        arrow.textContent = "→";
+        link.append(arrow);
+        bottom.append(label, link);
+        card.append(head, title, description, bottom);
+        fragment.append(card);
+      }
+      programGrid.append(fragment);
 
-            cards.forEach(function (card) {
-                const matches = card.dataset.search.includes(query);
-                card.style.display = matches ? "" : "none";
-
-                if (matches) {
-                    visibleCount++;
-                }
-            });
-
-            emptyState.hidden = visibleCount !== 0;
+      function updateResults() {
+        const query = searchInput.value.trim().toLowerCase().replace(/\s+/g, " ");
+        const cards = Array.from(programGrid.querySelectorAll(".program-card"));
+        let visible = 0;
+        cards.forEach((card) => {
+          const matches = !query || card.dataset.search.includes(query);
+          card.hidden = !matches;
+          if (matches) visible += 1;
         });
-
-        document.getElementById("year").textContent =
-            new Date().getFullYear();
-    </script>
+        emptyState.hidden = visible !== 0;
+        resultsLine.textContent = query ? `Showing ${visible} of ${cards.length} exercises` : `Showing all ${cards.length} exercises`;
+        programCount.textContent = `${visible} of ${cards.length} exercises`;
+      }
+      searchInput.addEventListener("input", updateResults);
+      document.getElementById("year").textContent = new Date().getFullYear();
+    })();
+  </script>
 </body>
 </html>
